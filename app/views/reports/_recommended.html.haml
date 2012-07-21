@@ -3,15 +3,14 @@
 
 - recommended ||= reports
 
-- unless recommended.blank?
+- if defined? recommended
   .reports
     .recommended
       %h3= t 'reports.recommended'
-
       .items
-        - recommended.each do |recommended|
+        - recommended.each do |r|
           .item
-            = link_to image_or_missing(recommended, :thumb), recommended
-            = link_to recommended.name, report_path(recommended)
+            = link_to image_or_missing(r, :thumb), r
+            = link_to r.name, report_path(r)
         .clear
       .clear

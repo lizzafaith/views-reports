@@ -1,6 +1,6 @@
 ViewsReports::Application.routes.draw do
   
-  root :to => 'reports#show', :defaults => { :id => 1}
+  root :to => 'reports#show', :defaults => { :seo => "Burning_man_faces_huge_scaling_issues-PUKGC" }
 
   get 'reports/view' => 'reports#show'
   get 'reports/view/:name_seo' => 'reports#show'

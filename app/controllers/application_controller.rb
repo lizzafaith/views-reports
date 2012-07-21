@@ -1,4 +1,7 @@
 
+
+NoPhoto = NoPhotoStub
+
 class ApplicationController < ActionController::Base
   
   include Mixin::AppHelper
