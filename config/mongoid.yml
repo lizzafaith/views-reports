@@ -1,0 +1,40 @@
+
+
+
+development:
+  sessions:
+    default:
+      hosts:
+        - localhost:27017
+      database: ish_development
+
+test:
+  sessions:
+    default:
+      hosts:
+        - localhost:27017
+      database: ish_test
+
+production:
+  sessions:
+    default:
+      hosts:
+        - localhost:27017
+      database: ish_production
+  
+#  slaves:
+#    - host: localhost
+#      port: 27017
+#    - host: 10.0.0.134
+#      port: 27017
+  
+#  host: <%= ENV['MONGOID_HOST'] %>
+#  port: <%= ENV['MONGOID_PORT'] %>
+#  username: <%= ENV['MONGOID_USERNAME'] %>
+#  password: <%= ENV['MONGOID_PASSWORD'] %>
+#  database: <%= ENV['MONGOID_DATABASE'] %>
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019

@@ -1,0 +1,24 @@
+
+.form-big
+
+  = form_for(@user, :url => '/users/' + @user.id.to_s, :html => { :multipart => true }) do |f|
+
+    - if @user.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@user.errors.count, "error")
+          prohibited this user from being saved:
+        %ul
+          - @user.errors.full_messages.each do |msg|
+            %li= msg
+
+    .hide
+      %h2 About Me
+      .text-column
+        = f.text_area :descr, :class => 'tinymce'
+
+    %h5 Group
+    = select :user, :group_id, @groups
+
+    .actions
+      = f.submit 'Save'

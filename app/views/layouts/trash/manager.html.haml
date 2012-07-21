@@ -1,0 +1,33 @@
+
+
+!!!
+%html
+  %head
+    %title
+      = h yield(:title)
+      | Infinite Shelter
+    %link{:href => "http://fonts.googleapis.com/css?family=Trykker|Mate+SC", :rel => "stylesheet", :type => "text/css"}
+    = stylesheet_link_tag 'application_minimal_2'
+    = csrf_meta_tags
+    = javascript_include_tag 'application_minimal_2', 'http://w.sharethis.com/button/buttons.js'
+      
+  %body
+    .manager
+      = render :partial => 'application/header'
+    
+      %h5 Manager
+
+      .content
+        - if notice
+          %p.notice= notice
+        - if alert
+          %p.alert= alert
+        = content_for?(:content) ? yield(:content) : yield
+        
+      .clear
+
+    = render 'manager_footer'
+    = render :partial => 'analytics'
+
+
+    

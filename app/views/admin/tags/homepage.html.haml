@@ -1,0 +1,12 @@
+- @feature_tags.each_with_index do |tag, idx|
+  - last = (idx + 1) % 4 == 0 ? ' last' : ''
+  %div{:class => "span-6 #{last}"}
+    = render :partial => 'reports_list', :locals => { :tag => tag }
+.clear
+%hr/
+- @tags.map do |tag|
+  = render :partial => 'reports_list', :locals => { :tag => tag }
+.clear
+%hr/
+%ul
+  %li= link_to 'All Tags', tags_path

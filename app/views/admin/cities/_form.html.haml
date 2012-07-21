@@ -1,0 +1,39 @@
+
+/ admin city
+
+= form_for [:admin, @city], :html => { :multipart => true } do |f|
+  - if @city.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@city.errors.count, "error")
+        prohibited this city from being saved:
+      %ul
+        - @city.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name
+  .field
+    = f.label :name_seo
+    %br
+    = f.text_field :name_seo
+  .field
+    = f.label :country_id
+    = select :city, :country_id, @countries
+  .field
+    = f.label :descr
+    %br
+    = f.text_area :descr
+  .field
+    = f.label :x
+    %br
+    = f.text_field :x
+  .field
+    = f.label :y
+    %br
+    = f.text_field :y
+  .field
+    = f.file_field :profile_photo
+  .actions
+    = f.submit

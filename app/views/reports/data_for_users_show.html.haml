@@ -1,0 +1,18 @@
+
+.reports-list
+  - @reports.map do |report|
+    .reports-list-item
+      %h2= link_to report.name.titleize, report
+      .float-left.padding-right
+        - if report.photo.url == '/photos/original/missing.png'
+          = link_to image_tag('no_photo.png'), report
+        - else
+          = link_to image_tag(report.photo.url(:thumb)), report
+      .meta
+        - if report.city
+          In #{link_to report.city.name, city_path(report.city)}
+        - if !report[:created_at].blank?
+          On #{pretty_date report[:created_at]}
+      .subhead
+        .subhead-scrollable= report.subhead
+  .clear

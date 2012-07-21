@@ -1,0 +1,34 @@
+!!! 
+%html
+  %head
+    %title
+      = h yield(:title)
+      | Events - Infinite Shelter
+    %link{:href => "http://fonts.googleapis.com/css?family=Trykker|Mate+SC", :rel => "stylesheet", :type => "text/css"}
+    = stylesheet_link_tag 'utility', 'three-column'
+    = csrf_meta_tags
+    = javascript_include_tag "defaults", 'application', 'http://w.sharethis.com/button/buttons.js'
+  %body.three-column
+    #header
+      .center
+        = link_to image_tag('logo100x100.png'), '/'
+        - if @city.blank?
+          %h2 Events across cities
+        - else
+          %h2
+            Events & Venues
+            - unless @venue_type.blank?
+              in #{link_to @venue_type.name, @venue_type}
+            in #{link_to @city.name, @city}
+            - unless @community.blank?
+              in community #{link_to @community.name, @community}
+        = render 'ads/leaderboard'
+      = render 'venues/weekly_minimal', :weekly => @weekly_venues
+    .colmask.threecol
+      .colmid
+        .colleft
+          = yield
+    #footer.center
+      %p.small Copyright &copy; CAC 2009-2011
+      %div= image_tag 'contact.png'
+    = render :partial => 'analytics'

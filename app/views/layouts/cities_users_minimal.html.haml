@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %title
+      = h yield(:title)
+      | Infinite Shelter
+    = stylesheet_link_tag 'manifest_minimal'
+    = csrf_meta_tags
+    = javascript_include_tag 'manifest_cities_users'
+  %body.minimal.cities_users
+    .header
+      .logo
+        = link_to image_tag('logo100x100.png'), '/'
+      .menu-main
+        %h1 Backbone
+        %h2.subhead Re4-ISh
+        %ul
+          %li= link_to 'Dashboard', :controller => :users, :action => :dashboard
+          %li= link_to 'Expand All', '#!/expand-all', :id => 'expandAll'
+          %li= link_to 'Default View', :controller => :cities_users, :action => :index
+          %li= link_to 'New cities_user', '#!/cities_users/new', :class => 'new'
+        = form_tag '#!/only_feature' do
+          Feature
+          = check_box_tag 'is_feature'
+      .clear
+    .clear
+    .content.relative
+      = yield
+    

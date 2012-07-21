@@ -1,0 +1,16 @@
+
+/ login register
+/ light semantic
+/ 20120708
+/ 20120710
+
+%ul#login_register
+  - if current_user.blank?
+    %li= link_to t('users.login'), sign_in_path, :class => :login
+    %li= link_to t('users.register'), sign_in_path, :class => :register
+    %li= link_to t('users.dashboard'), dashboard_path, :class => :dashboard
+
+  - else
+    %li= link_to current_user[:name], show_user_path(current_user), :class => :show_user
+    %li= link_to t('users.dashboard'), dashboard_path, :class => :dashboard
+    %li= link_to t('users.sign_out'), sign_out_path, :class => :logout, :method => :delete

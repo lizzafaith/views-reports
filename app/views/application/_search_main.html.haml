@@ -1,0 +1,10 @@
+
+
+= render 'reports/search'
+
+- proc do # hidden
+  #search_main
+    = form_tag search_path do
+      = text_field_tag 'search_keywords'
+      = submit_tag g('search')
+      = link_to g('clear'), 'javascript: void(0);'

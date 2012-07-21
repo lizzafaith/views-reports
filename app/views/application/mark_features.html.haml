@@ -1,0 +1,48 @@
+
+
+/ mark_features
+
+.mark-features
+
+  .main
+    %h1
+      = t('g.mark_features')
+      = t('g.of')
+      = t(@ctrl + '.title')
+
+    .items-list
+      = form_tag :url => '' do
+        - @items.each do |r|
+          .item
+            .float-left
+              = check_box_tag r[:id], '', r[:is_feature] == 1
+            = render 'list_item', :item => r
+      .clear
+
+    .space
+    = will_paginate @items, :container => false
+
+
+:javascript
+  $(document).ready(function() {
+    path = "/manager/#{@ctrl}/mark_features";
+  })
+
+:coffee
+  $(document).ready ->
+    checkboxes = $('.items-list input[type="checkbox"]')
+    $.each checkboxes, (idx, item) ->
+      this_checkbox = $('.items-list input[type="checkbox"]').eq(idx)
+      this_checkbox.on 'click', ->
+        if this_checkbox.attr('checked') == 'checked'
+          mark = 1
+        else
+          mark = 0
+
+        Utils.loading()
+        $.post path,
+          id: this_checkbox.attr('id')
+          is_feature: mark, (x) ->
+            this_checkbox.attr('checked', x)
+            Utils.loaded()
+            

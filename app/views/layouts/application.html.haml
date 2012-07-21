@@ -1,0 +1,60 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %title
+      = h yield(:title)
+      \- Infinite Shelter
+    %link{:href => "http://fonts.googleapis.com/css?family=Trykker|Mate+SC", :rel => "stylesheet", :type => "text/css"}
+    = stylesheet_link_tag 'application'
+    = csrf_meta_tags
+    = javascript_include_tag 'application', 'http://w.sharethis.com/button/buttons.js'
+    = render 'analytics'
+      
+  %body
+    #white_dragon_layout
+      = render 'admin/ctrl'
+      .container
+        = render :partial => 'logo'
+        #mainmenu
+          = render 'menu_main'
+        .clear
+        .center= render 'ads/leaderboard'
+        .clear
+        .content{ :id => @action_name }
+          - if notice
+            %p.notice= notice
+          - if alert
+            %p.alert= alert
+          
+          #header_one= yield(:header_one) if content_for?(:header_one)
+          #header_two= yield(:header_two) if content_for?(:header_two)
+
+          #sidebar_content= yield(:sidebar) if content_for?(:sidebar)
+          #main_content= yield(:main) if content_for?(:main)
+
+          - if content_for?(:one)
+            #column_one= yield(:one)
+          - if content_for?(:two)
+            #column_two= yield(:two)
+
+          = yield
+
+          #content_footer= yield(:footer) if content_for?(:footer)
+
+        .clear
+        .span-24.footer
+          .span-8
+            %ul
+              %li= link_to 'About', '/about', :class => 'white'
+              %li= link_to 'Privacy Policy', '/privacy-policy', :class => 'white'
+          .span-8
+            .white ^__^
+          .span-8.last
+            .white Copyright &copy; CAC 2009-2011
+            .white= image_tag 'contact.png'
+            .white
+              Today is
+              = DateTime.now.in_time_zone("Eastern Time (US & Canada)")
+
+    = render 'ads/adbrite'

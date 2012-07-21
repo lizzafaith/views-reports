@@ -1,0 +1,7 @@
+
+[submodule "app/assets"]
+	path = app/assets
+	url = https://github.com/computational-arts-corp/assets.git
+[submodule "app/no_models"]
+	path = app/no_models
+	url = git@github.com:computational-arts-corp/no_models.git

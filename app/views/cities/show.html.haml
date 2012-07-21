@@ -1,0 +1,70 @@
+
+
+/ cities show
+
+/ 20120710
+/ 20120713
+
+= render 'init_maps'
+
+- content_for :title do
+  = t('cities.travel_to', :city_name => @city[:name] )
+
+- content_for :header_one do
+  = render 'cities/header', :city => @city
+
+.ids{ :city_id => @city[:id] }
+
+- content_for :one do
+  - unless @reports.blank?
+    #city_reports
+      %h2= link_to t('reports.list'), city_reports_path(@city)
+      = render 'reports/index', :reports => @reports
+      = render 'will_paginate', :items => @reports
+
+
+- content_for :two do
+  #city_maps
+    %h2= t('maps.one')
+    = render 'show_map'
+
+  - unless @galleries.blank?
+    #city_galleries
+      %h2= t('galleries.list')
+      = render 'galleries/index', :galleries => @galleries, :title_path => false # city_galleries_path(@city)
+      = render 'will_paginate', :items => @galleries, :page => :galleries_page
+
+  - unless @videos.blank?
+    #city_videos= render 'videos/index', :videos => @videos, :title_path => city_videos_path(@city)
+
+  - unless @idx_communities.blank?
+    #city_communities
+      %h2= link_to t('communities.list'), city_communities_path(@city)
+      = render 'communities/index_small', :communities => @idx_communities
+
+  - unless @idx_users.blank?
+    #city_users
+      %h2= link_to t('users.list'), city_users_path(@city)
+      = render 'users/index_small', :users => @idx_users
+
+  - unless @idx_events.blank?
+    #city_events= render 'events/index', :events => @idx_events, :title_path => city_events_path(@city)
+
+  - unless @weekly_venues.blank?
+    #city_weekly= render 'venues/weekly', :weekly => @weekly_venues
+
+  - unless @venue_types.blank?
+    #city_venue_types
+      %h2= t('venues.types_in', :city_name => @city.name )
+      %ul
+        - @venue_types.each do |type|
+          %li= link_to t('venues.type_in', :type_name => type.name, :city_name => @city.name), venue_type_in_city_path(type, @city)
+
+  - unless @venues.blank?
+    #city_venues
+      %h2= t( 'venues.in', :city_name => @city.name )
+      %ul
+        - @venues.each do |v|
+          %li= link_to v.name, v
+
+      = render 'will_paginate', :items => @venues, :page => :venues_page

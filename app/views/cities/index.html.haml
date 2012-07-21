@@ -1,0 +1,34 @@
+
+
+/ cities index
+
+/ 20120717
+
+
+
+- content_for :header_one do
+
+  %h1= t('cities.title')
+
+
+
+- content_for :one do
+
+  .title= t('cities.feature')
+  - @feature_cities.each do |city|
+    %h2= link_to t('cities.travel_to', :city_name => city.name), city_path(city)
+
+
+- content_for :two do
+
+  = render 'map'
+
+
+#ad_1= render 'ads/leaderboard'
+
+.all-cities
+  - @cities.each do |city|
+    %h2= link_to t('cities.travel_to', :city_name => city.name), city_path(city)
+
+- content_for :footer do
+  #ad_2=render 'ads/leaderboard'

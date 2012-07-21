@@ -1,0 +1,16 @@
+= form_for @venue_type, :url => '/admin/venue_types' do |f|
+  -if @venue_type.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@venue_type.errors.count, "error")} prohibited this venue_type from being saved:"
+      %ul
+        - @venue_type.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :descr
+    = f.text_area :descr
+  .actions
+    = f.submit 'Save'

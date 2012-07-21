@@ -1,0 +1,42 @@
+= form_for [:admin, @community], :html => { :multipart => true } do |f|
+
+  - if @community.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@community.errors.count, "error")
+        prohibited this community from being saved:
+      %ul
+        - @community.errors.full_messages.each do |msg|
+          %li= msg
+
+  .span-12
+    .field
+      = f.label :name
+      %br/
+      = f.text_field :name
+    .field
+      = f.label :name_seo
+      %br/
+      = f.text_field :name_seo
+    .field
+      = f.label :descr
+      %br/
+      = f.text_area :descr
+    
+  .span-12.last
+    .field
+      = f.label :city_id
+      %br/
+      = select :community, :city_id, @cities_list
+    .field
+      = f.label :language_id
+      %br/
+      = select :community, :language_id, @languages_list
+    .field
+      .span-3
+        = image_tag @community.photo.url :thumb
+      .span-9.last
+        .field
+          = f.file_field :photo
+    .actions
+      = f.submit

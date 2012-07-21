@@ -1,0 +1,23 @@
+
+/ cities _sidebar
+/ 20120713
+
+
+
+.cities
+  .sidebar
+
+    .logo
+      = link_to image_tag(city.profile_photo.url(:thumb)), '#header_city'
+
+    %h1= link_to city.name,  '#header_city'
+
+    %ul.menu
+      %li= link_to t('reports.list'), '#city_reports'
+      %li= link_to t('cities.map'), '#city_maps'
+      %li= link_to t('galleries.list'), '#city_galleries'
+      %li= link_to t('communities.list'), '#city_communities'
+      %li= link_to t('events.list'), '#city_events'
+      %li= link_to t('venues.weekly'), '#city_weekly'
+
+    .clear

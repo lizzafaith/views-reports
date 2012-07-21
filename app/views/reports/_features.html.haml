@@ -1,0 +1,34 @@
+
+
+/ reports _features
+
+/ 20120713
+
+#reports_features
+  %h2.section= link_to t('reports.features'), reports_path
+
+  .feature-main
+    - r = reports.shift
+    %h2= link_to r.name.titleize, report_path(r)
+    = render 'meta', :item => r
+    = link_to image_or_missing(r, :small), report_path(r)
+    .subhead= r.subhead
+
+  -#= render 'ads/large_rectangle'
+
+  - reports.shift
+  - available = 2
+  .items
+    - reports[1..reports.length+1].each_with_index do |q, index|
+      - if rand(2) == 1 && available > 0
+        .item= render 'ads/large_rectangle'
+        - available -= 1
+
+      = render 'reports/list_item', :item => q
+
+    .clear
+      
+
+  %h2.big-button= link_to t('reports.more_news'), reports_path
+
+  .clear

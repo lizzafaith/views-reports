@@ -1,0 +1,35 @@
+
+
+/ cities _header
+
+/ 20120713
+
+
+#cities_header
+  - begin
+    .logo= link_to image_tag(city.profile_photo.url(:thumb)), city_path(city)
+  - rescue
+
+  %h1= link_to city.name, city_path(city)
+
+  %ul.menu
+    %li= link_to t('reports.list'), '#city_reports'
+    %li= link_to t('galleries.list'), '#city_galleries'
+    %li= link_to t('videos.list'), '#city_videos'
+    -#%li= link_to t('venues.list'), '#city_venues'
+    %li= link_to t('events.list'), '#city_events'
+    -#%li= link_to t('communities.list'), '#city_communities'
+    %li= link_to t('users.list'), '#city_users'
+
+  - if defined? city.greeter and !city.greeter.blank?
+    .greeter
+      = t('users.greeter')
+      = link_to city.greeter.username, city.greeter
+
+  - if defined? city.today and !city.today.blank?
+    .today
+      = t('events.today')
+      %ul
+        - city.today.map do |e|
+          %li= link_to e.name, e
+

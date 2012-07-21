@@ -1,0 +1,4 @@
+- reports.each do |report|
+  .reports-list-item
+    %h3= link_to report.name, report_path(report)
+    = render :partial => 'reports/meta', :locals => { :report => report }

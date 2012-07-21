@@ -1,0 +1,33 @@
+
+
+- content_for :title, 'Travel, Party Guide and Organizer'
+
+.homepage.reports
+  
+  .sidebar
+    .absolute
+      = render 'ad_skyscraper'
+
+  .main
+    %h1 &nbsp;
+
+    .width-half
+      = render 'reports/features', :reports => @reports
+
+    .width-half
+      - # = render 'events/features'
+      = render 'galleries/features', :galleries => @galleries
+      = render 'videos/features', :videos => @videos
+      = render 'cities/map'
+    .clear
+
+:javascript
+  $(document).ready(function() {
+    feature_cities_selected = false
+
+    if (feature_cities_selected) {
+      CanvasOps.homepage_feature_cities()
+    } else {
+      CanvasOps.homepage_all_cities()
+    }
+  })

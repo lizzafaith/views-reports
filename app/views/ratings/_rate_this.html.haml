@@ -1,0 +1,13 @@
+
+  
+.rate-this
+  %h3 Rate This:
+
+  #rate_this_314
+    = form_tag '/ratings/rate' do
+      - (1..5).each do |i|
+        .star
+          = i
+          = radio_button_tag 'rating', i
+      = submit_tag 'Rate!'
+  .clear

@@ -1,0 +1,15 @@
+
+
+/ reports  _index
+
+/ 20120713
+- available = 2
+
+.items
+  - reports.each_with_index do |r, idx|
+    - if rand(2) == 1 && available > 0
+      .item= render 'ads/large_rectangle'
+      - available -= 1
+    = render 'reports/list_item', :report => r
+
+  .clear

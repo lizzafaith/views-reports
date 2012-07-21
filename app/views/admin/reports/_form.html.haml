@@ -1,0 +1,91 @@
+
+= form_for(@report, :url => '/reports/' + @report.id.to_s, :html => { :multipart => true }) do |f|
+
+  .form
+    - title = (params[:action] == 'new') ? t('reports.new') : t('reports.edit')
+    %h3.index-small.span-4
+      = t title
+    = f.submit
+    .clear
+    - if @report.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@report.errors.count, "error")
+          prohibited this report from being saved:
+        %ul
+          - @report.errors.full_messages.each do |msg|
+            %li= msg
+
+    .span-12
+      .field
+        = f.text_field :name, :class => 'span-12 name'
+      .field
+        = f.text_field :name_seo, :class => 'span-12'
+      .field
+        = f.label :created_at
+        %br
+        = f.date_select :created_at
+      .field
+        = f.text_area :subhead, :class => 'subhead span-12'
+      .field
+        = f.text_area :descr, :class => 'descr span-12'
+      .field.span-3
+        = f.label :is_done
+        %br
+        = f.check_box :is_done
+      .field.span-3
+        = f.label :is_public
+        %br
+        = f.check_box :is_public
+      .field.span-3
+        = f.label :is_feature
+        %br
+        = f.check_box :is_feature
+      .field.span-3.last
+        = f.label :is_trash
+        %br
+        = f.check_box :is_trash
+    .span-12.last
+      = f.label :active_at
+      = f.date_select :active_at
+      .clear
+      = render 'title', :title => t('g.location')
+      %div
+        - unless @cities.blank?
+          .field
+            = f.label :city_id
+            \&nbsp;
+            \#{select :report, :city_id, @cities}
+        - if current_user[:group_id] == 1
+          .field
+            Coordinates
+            %br
+            = f.text_field :x
+            = f.text_field :y
+        .field
+          Do you have the address?
+          %br
+          = f.text_field :address
+        .clear
+
+      = render 'title', :title => t('Photo')
+      %div
+        .span-3
+          = image_tag @report.photo.url(:thumb)
+        .span-9.last
+          .field
+            = f.file_field :photo
+        .clear
+      - unless @tags.blank?
+        = render 'title', :title => t('tags.title')
+        .tag-items
+          - @tags.each_with_index do |tag, idx|
+            - last = (((idx + 1) % 3 == 0) == true) ? 'last' : ''
+            %div{:class => "span-4 #{last}"}
+              = check_box_tag "report[tag_ids][]", tag.id, @report.tags.include?(tag)
+              = tag.name
+            - if last == 'last'
+              .clear
+          .clear
+      .actions
+        = f.submit

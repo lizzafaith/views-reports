@@ -1,0 +1,56 @@
+
+/ reports show
+
+- content_for :title, @title
+
+- content_for :header_one do
+  - unless @report.city.blank?
+    = render 'cities/header', :city => @report.city
+
+%h1#title= @report.name
+
+.tags
+  - unless @report.city.blank?
+    .item.city
+      = t('g.in')
+      = link_to @report.city.name, city_path(@report.city)
+      = link_to image_or_missing(@report.city, :thumb), city_path(@report.city)
+  .item.user
+    = t('g.by')
+    = link_to @report.user.username, @report.user
+    - unless @report.user.profile_photo.blank?
+      = link_to image_or_missing(@report.user.profile_photo, :mini), show_user_path(@report.user)
+  - @report.tags.each do |tag|
+    .item.tag
+      = link_to tag, tag_path(tag)
+  .item= pretty_date @report[:created_at]
+
+
+.subhead= simple_format @report.subhead
+
+- unless missing?(@report)
+  .report-image= image_or_missing(@report, :small)
+
+.related
+
+  = render 'ads/large_rectangle'
+
+  - unless @report.galleries.blank?
+    .galleries
+      %h3.title= t('galleries.related')
+      .items
+        - @report.galleries.each do |g|
+          = render 'galleries/list_item', :g => g
+        .clear
+
+  - unless @report.videos.blank?
+    %h3= t('videos.related')
+    - @report.videos.each do |v|
+      = render 'videos/list_item', :video => v
+
+.text-body= simple_format raw @report.descr
+
+= render 'share_this'
+= render 'ratings/rate_this'
+= render 'reports/recommended', :recommended => @report.recommended
+= render 'disqus' 

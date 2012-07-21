@@ -1,0 +1,39 @@
+- content_for :title, @report[:name]
+
+.reports_show
+  %h1= @report.name.titleize
+  .span-19
+    = render :partial => 'meta', :locals => { :report => @report, :current_user => current_user }
+    .subhead
+      = @report.subhead
+      %hr.space
+    .descr
+      .float-right
+        = image_tag  @report.photo.url(:small)
+        .space
+        = render 'ad_large_rectangle'
+    
+      = simple_format raw @report.descr
+    .clear
+    %br
+    = render :partial => 'share_this'
+    .height-10
+    = render 'ratings/rate_this'
+    .height-10
+    .clear
+    = render :partial => 'recommended', :locals => { :recommended => @recommended }
+    .clear
+    %br
+    = render :partial => 'disqus'
+
+  .span-5.last
+    - unless @report.tags.blank?
+      .round.tags
+        %h3 Tags
+        %ul
+          - @report.tags.each do |tag|
+            %li= link_to tag.name, tag_path(tag)
+      .round
+        %h3 Subscribe
+        .padding-right= render 'subscriptions/form'
+    = render 'ad_skyscraper'

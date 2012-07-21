@@ -1,0 +1,24 @@
+
+/ semantic header
+/ 20120710
+
+#header_main
+
+  .logo= link_to image_ish, '/'
+
+  %h1= g 'ish'
+
+  = render 'menu_main_20120715'
+
+  - if session[:current_city]
+    %ul.menu.secondary
+      %li= link_to session[:current_city][:name].titleize, city_path(session[:current_city])
+
+  = render 'search_main'
+  = render 'set_layout'
+
+  -#= render 'ads/links_large'
+
+  = render 'login_register'
+
+  .clear

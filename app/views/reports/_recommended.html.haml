@@ -1,0 +1,17 @@
+
+/ 20120713
+
+- recommended ||= reports
+
+- unless recommended.blank?
+  .reports
+    .recommended
+      %h3= t 'reports.recommended'
+
+      .items
+        - recommended.each do |recommended|
+          .item
+            = link_to image_or_missing(recommended, :thumb), recommended
+            = link_to recommended.name, report_path(recommended)
+        .clear
+      .clear

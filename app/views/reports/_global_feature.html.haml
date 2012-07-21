@@ -1,0 +1,14 @@
+#gf34.span-12.last
+  .bg-gray.padded.margin-bottom
+    %ul.submenu
+      - (0...5).each do |i|
+      - bg_yellow = (i==0) ? 'background: yellow;' : ''
+        %li{:class => "link-#{i}"}= link_to i+1, 'javascript: return false;', :style => bg_yellow
+    .clear
+    .padded-container
+      - @global_features.each_with_index do |r, idx|
+      - hide = (idx == 0) ? '' : 'hide'
+        %div{:class => "item-#{idx} #{hide}"}
+          = image_tag r.photo.url :small
+          %h1= link_to r.name, global_report_path(r)
+          %p= r.subhead

@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %title
+      = h yield(:title)
+      | Infinite Shelter
+    %link{:href => "http://fonts.googleapis.com/css?family=Trykker|Mate+SC", :rel => "stylesheet", :type => "text/css"}
+    = stylesheet_link_tag 'application'
+    = csrf_meta_tags
+    = javascript_include_tag 'application', 'http://w.sharethis.com/button/buttons.js'
+  %body{:onload => "initialize()", :onunload => "GUnload()"}
+    .container
+      = yield
+      

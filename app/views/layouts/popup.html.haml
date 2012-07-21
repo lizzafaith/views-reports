@@ -1,0 +1,45 @@
+!!!
+%html
+  %head
+    %title Infinite Shelter
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    :css
+      body {
+        margin: 10px;
+
+      }
+      .container {
+        border: 1px solid red;
+        padding: 10px;
+        width: 400px;
+        background: #f7cc8e;
+      }
+      h3 {
+        margin: .2em 0 .2em 0;
+        padding: 5px;
+        background: #ef88e9;
+      }
+      a.read {
+        float: right;
+        padding: 5px 10px 5px 10px;
+        background: white;
+        border: 1px solid gray;
+        margin-top: 35px;
+        text-decoration: none;
+        clear: both;
+      }
+      .clear {
+        clear: both;
+      }
+      a.about {
+        margin-top: 10px;
+      }
+      .height-20 {
+        height: 20px;
+      }
+      %body
+    .container
+      = yield
+      .height-20
+      = link_to 'About', '/about', :class => 'about'
+      .clear

@@ -1,0 +1,14 @@
+
+- item ||= report
+
+.item
+  - unless item.name.blank?
+    %h3= link_to item.name.titleize, item
+
+  - unless item.photo.blank?
+    = link_to image_or_missing(item), item
+
+  = render 'meta', :item => item
+
+  - unless item[:subhead].blank?
+    .subhead= item.subhead

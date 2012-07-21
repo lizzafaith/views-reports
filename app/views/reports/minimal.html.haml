@@ -1,0 +1,11 @@
+
+
+
+%h2= @report.name
+= render :partial => 'meta', :locals => { :report => @report }
+.float-left= image_tag  @report.photo.url(:small)
+
+.subhead= @report.subhead
+.descr= simple_format @report.descr
+
+- # = render 'ratings/rate_this'

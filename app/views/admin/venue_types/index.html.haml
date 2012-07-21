@@ -1,0 +1,19 @@
+%h1 Listing venue_types
+
+%table
+  %tr
+    %th Name
+    %th Descr
+    %th Is trash
+    %th
+    %th
+    %th
+
+  - @venue_types.each do |venue_type|
+    %tr
+      %td= venue_type.name
+      %td= venue_type.descr
+      %td= venue_type.is_trash
+      %td= link_to 'Show', venue_type
+      %td= link_to 'Edit', edit_venue_type_path(venue_type)
+      %td= link_to 'Destroy', venue_type, :confirm => 'Are you sure?', :method => :delete

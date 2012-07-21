@@ -1,0 +1,14 @@
+
+- unless current_user.blank?
+  - if current_user[:group_id] <= 2
+    #admin_comments
+      #comment_iphone iPhone
+      #comment_iphone4 iPhone 4
+      #comment_iphone4_2 iPhone 4-2
+      #comment_ipad iPad
+    #admin_ctrl
+      %ul
+        %li= link_to g('manager'), manager_dashboard_path, :id => 'manager_dashboard_link'
+        - if current_user[:group_id] == 1
+          %li= link_to g('admin'), admin_dashboard_path, :id => 'admin_dashboard_link'
+      = render 'reports/admin_links'

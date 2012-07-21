@@ -1,0 +1,14 @@
+
+
+%h1= t('errors.list')
+
+%ul
+  - @errors.each do |e|
+    %li
+      Type
+      = e.type
+      %ul
+        %li= e.referrer 
+        %li= e.url
+        %li= pretty_date e.date_time
+  

@@ -1,0 +1,9 @@
+%h3 Ratings (admin)
+
+%table
+  - @ratings.each do |rating|
+    %tr
+      %td= rating.url
+      %td= rating.ip
+      %td= pretty_date rating.date
+      %td= rating.rating

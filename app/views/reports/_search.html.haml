@@ -1,0 +1,7 @@
+
+
+#reports__search
+
+  = form_tag search_reports_path, :method => :get do
+    = text_field_tag :keywords
+    = submit_tag t('g.search')

@@ -1,0 +1,11 @@
+
+
+.reports.error
+  .main
+    %h1= t('e.not_found')
+
+    - t('e.not_found_2').each do |ee|
+      %p= ee
+
+
+    = render 'reports/search'

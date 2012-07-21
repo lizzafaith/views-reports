@@ -1,0 +1,5 @@
+
+
+#set_layout
+  = form_tag set_layout_path do
+    = select :layout, :set, [t('g.set_layout')] + @layouts_list

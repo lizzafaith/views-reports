@@ -1,0 +1,17 @@
+.span-12
+  %h1 Public Tags
+  %ul
+    - @tags.each do |tag|
+      %li
+        = link_to edit_image, admin_edit_tag_path(tag)
+        = tag.name
+  %h1 Public Feature Tags
+  %ul
+    - @feature_tags.each do |feature|
+      %li
+        = link_to edit_image, admin_edit_tag_path(feature)
+        = feature.name
+.span-12.last
+  %ul
+    %li= link_to image_new, admin_new_tag_path
+    %li= link_to '[my]', my_tags_path

@@ -1,0 +1,10 @@
+
+
+- items ||= @reports
+- items ||= @users
+- begin
+  - page ||= param_name
+- rescue
+
+.will-paginate
+  = will_paginate items, { :param_name => page || :page }

@@ -1,0 +1,35 @@
+
+
+/ admin / users / index
+
+
+.users-index
+
+  .sidebar
+
+  .main
+    %h1 Admin Users Index
+    
+    .legend
+      id, username, email
+    .space
+
+    - @users.each do |user|
+      .users-list-item
+        .float-left
+          - if !user.profile_photo.blank?
+            = image_tag user.profile_photo.photo(:thumb)
+          - else
+            = missing
+        .float-left
+          = user.id
+          ,
+          = user.username
+          ,
+          = user.email
+          = link_to image_edit, admin_edit_user_path(user)
+        .float-left= button_to 'Delete', { :action => :destroy, :id => user[:id] }, :method => :delete, :confirm => "Are you sure?"
+        .clear
+
+
+    = will_paginate @users

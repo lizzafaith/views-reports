@@ -1,0 +1,21 @@
+
+- item ||= report
+
+- unless item.name.blank?
+  %h2= link_to item.name.titleize, item
+
+- if defined?(item.photo)
+  - begin
+    .float-left.padding-right= link_to image_tag(item.photo.url(:thumb)), item
+  - rescue
+- else
+  - begin
+    .float-left.padding-right= link_to image_tag(item.photos[0].photo.url(:thumb)), item
+  - rescue
+  
+= render 'meta', :item => item
+
+- unless item[:subhead].blank?
+  .subhead= item.subhead
+
+.clear

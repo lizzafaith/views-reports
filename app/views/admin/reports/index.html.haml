@@ -1,0 +1,21 @@
+%h3 Admin Reports Index
+
+%ol
+  - @reports.map do |r|
+    %li{:value => r.id, :class => 'index-item' }
+      .name
+        %div{:class => 'float-right'}= image_tag r.photo.url :thumb
+        = link_to edit_image, edit_admin_report_path(r)
+        = link_to r.name, r
+        = link_to delete_image, report_path(r), :method => :delete
+        
+        - unless r.user.blank?
+          user?
+          = r.user.email
+          = r.user.username
+        .clear
+
+%br
+
+.digg_pagination
+  = will_paginate @reports, :container => false

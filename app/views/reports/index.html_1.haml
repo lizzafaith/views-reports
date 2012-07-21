@@ -1,0 +1,17 @@
+
+/ reports index
+
+/ 20120709
+/ 20120713
+/ 20120717
+
+- content_for :title, t('reports.list')
+
+- content_for :header_one do
+  %h1.t= t('reports.list')
+  = render 'reports/search'
+
+
+= render 'reports/index', :reports => @reports
+
+= render 'will_paginate', :items => @reports, :page => :reports_page, :params => { :keywords => @keywords }

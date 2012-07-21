@@ -1,0 +1,45 @@
+
+.span-24.bg-blue.menu-main
+  %ul.sf-menu
+    %li= link_to 'Tags', tags_path
+    %li= link_to 'Galleries', galleries_path
+    %li= link_to 'Articles', reports_path
+    %li= link_to 'Aphorisms', dictionaryitems_path
+    %li= link_to 'People', users_path
+    %li
+      %a{:href => "javascript:void(0);"} Cities
+      %ul
+        %li= link_to 'San Francisco', city_path('San_Francisco')
+        %li= link_to 'Chicago', city_path('Chicago')
+        %li= link_to 'New York', city_path('New_York_City')
+        %li= link_to 'Rio de Janeiro', city_path('Rio_de_Janeiro')
+        %li= link_to 'all', cities_path
+    - unless session[:current_city].blank?
+      %li.menu-spacer= link_to session[:current_city][:name], city_path(session[:current_city][:name_seo])
+      %li
+        %a{:href => "javascript:void(0);"} Venues
+        %ul
+          %li= link_to 'Hostels', venue_type_path(1)
+          %li= link_to 'Restaurants', venue_type_path(4)
+          %li= link_to 'Tourist Attractions', venue_type_path(6)
+          %li= link_to 'Bars', venue_type_path(2)
+          %li= link_to 'Clubs', venue_type_path(3)
+          %li= link_to 'Show All', venues_path
+      %li= link_to 'Events', events_path
+      %li= link_to 'Communities', communities_path
+    %li
+      %a{:href => 'javascript:void(0);' } New
+      %ul
+        %li= link_to 'Photo', new_photo_path
+
+= render 'menu_secondary'
+
+.clear
+
+:javascript
+  $(document).ready(function() {
+    // initialise plugins
+    $(".sf-menu").ready(function(){
+      $('ul.sf-menu').superfish()
+    })
+  })

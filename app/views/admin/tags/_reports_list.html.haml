@@ -1,0 +1,6 @@
+%h3.index-small= link_to tag.name, tag
+- if !tag.feature_reports.blank?
+  %b Features:
+  %ul
+    - tag.feature_reports.each do |report|
+      %li= link_to report.name, report

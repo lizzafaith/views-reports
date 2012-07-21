@@ -1,0 +1,18 @@
+
+= render 'init_maps'
+
+#cities_map
+  %h2.section= link_to t('cities.map'), cities_path
+
+  .map-fancy
+    .top
+      .foldin.feature_cities= t('cities.feature')
+      .foldin.all_cities.selected= t('cities.all')
+      .nonfoldin
+        = link_to t('cities.full_list'), cities_path
+    .clear
+
+    .bottom
+      #homepage_canvas
+
+

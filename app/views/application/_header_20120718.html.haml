@@ -1,0 +1,20 @@
+
+
+#header_main
+  %h1= link_to 'Infinite Shelter', '/'
+  
+  .scroller
+    .logo= link_to image_ish, '/'
+
+    %ul#menu_main
+      %li= link_to t('tags.list'), tags_path
+      %li= link_to t('reports.list'), reports_path
+      %li= link_to t('galleries.list'), galleries_path
+
+    = render 'set_layout'
+
+    = render 'set_locale'
+
+    = render 'login_register'
+
+  

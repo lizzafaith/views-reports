@@ -1,0 +1,10 @@
+
+- report ||= item
+
+.meta
+  - if report.user
+    By #{link_to report.user[:username], report.user}
+  - if report.city
+    In #{link_to report.city.name, report.city}
+  - if report[:created_at]
+    On #{pretty_date report[:created_at]}

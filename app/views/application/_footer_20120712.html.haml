@@ -1,0 +1,31 @@
+.clear
+
+.width-third
+  %ul.footer-links
+    %li= link_to 'About', '/about'
+    %li= link_to 'Privacy Policy', '/privacy-policy'
+    - if current_user
+      %li= link_to 'Sign out', '/users/sign_out'
+    
+.width-third
+  ^__^
+  %br
+  %br
+  
+.width-third
+  .float-left.margin-right= image_cac
+  %div Copyright &copy; CAC 2009-2012
+  %div= render 'contact'
+  %div= DateTime.now.in_time_zone("Eastern Time (US & Canada)")
+.clear
+
+.center
+  
+  New York City &nbsp; &nbsp; &nbsp; 
+  Ann Arbor &nbsp; &nbsp; &nbsp; 
+  Chicago &nbsp; &nbsp; &nbsp; 
+  San Francisco &nbsp; &nbsp; &nbsp; 
+  Rio de Janeiro
+
+.main
+  .width-measure &nbsp;

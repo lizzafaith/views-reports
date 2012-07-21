@@ -1,0 +1,8 @@
+%h3.index-small Tags
+.index-small
+  - tags.each do |tag|
+    %h3= link_to tag.name.capitalize, tag
+    - unless true
+      - tag.descendants.each do |d|
+        %h3.sub-tag= link_to d.name.capitalize, d
+        .clear

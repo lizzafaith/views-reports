@@ -1,0 +1,49 @@
+
+
+.header
+  .logo= link_to image_tag('logo.png'), '/'
+
+  %ul
+    %li= link_to 'Cities', cities_path
+    %li= link_to 'Aphorisms', dictionaryitems_path
+    %li= link_to 'News', '/reports'
+    %li= link_to 'Videos', '/videos'
+    %li= link_to 'People',  '/users'
+    %li= link_to 'Events', '/events'
+    %li= link_to 'Tags', '/tags'
+    %li= link_to  t('galleries.title'), '/galleries'
+
+  - unless session[:current_city].blank?
+    %ul
+      %li
+        = link_to session[:current_city][:name], city_path(session[:current_city])
+  %ul
+    %li
+      #loading Loading...
+
+  .relative
+    .my-dashboard
+      = render 'login_register'
+    .my-dashboard.hide
+      #main_search
+        = form_tag :url => '/search' do
+          = text_field_tag 'keywords'
+          = submit_tag 'Search'
+      =link_to image_search, "javascript:void(0);", :class => 'search_1'
+      =link_to image_close, "javascript:void(0);", :class => 'search_close hide'
+
+  .clear
+.clear
+
+:coffee
+  $(document).ready ->
+
+    $('a.search_1').on 'click', ->
+      $('a.search_close').show()
+      $('a.search_1').hide()
+      $("#main_search").show(1000)
+
+    $('a.search_close').on 'click', ->
+      $('a.search_close').hide()
+      $('a.search_1').show()
+      $("#main_search").hide(1000)

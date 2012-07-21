@@ -1,0 +1,101 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}/
+    %title hello-backbonejs
+  %body
+    = javascript_include_tag 'vendor/mustache', 'vendor/jquery-1.6.1-min', 'vendor/json2-min', 'vendor/underscore', 'vendor/backbone'
+    :javascript
+      $(document).ready(function() {
+        var Report = Backbone.Model.extend({
+          defaults: {
+            name: 'No Name',
+            descr: 'No Descr'
+          }
+       
+        })
+      
+        var Reports = Backbone.Collection.extend({
+          model: Report,
+          url: '/reports/homepage.json',
+          initialize: function() {
+            this.bind('change', function(object, options) {
+              
+            })
+          }
+        });
+        
+        var Show = Backbone.View.extend({
+          el: $('.reports'),
+          events: {},
+          data_item: {},
+          initialize: function() {
+            _.bindAll(this, 'render')
+            this.render()
+          },
+          render: function() {
+            $(this.el).append('<h5>' + data_item.get('name') + '</h5><p />p ')
+          }
+        })
+      
+        var ReportsIndex = Backbone.View.extend({    
+          el: $('.container'),
+        
+          events: {
+            // 'click button#add': 'addItem'
+          },
+      
+          initialize: function(){
+            _.bindAll(this, 'render', 'appendItem');
+   
+            this.collection = new Reports;
+            this.counter = 0;
+            this.render();          
+          },
+      
+          render: function(){
+            _.each(reports.models, function(this_model) {
+              $(this.el).append(new Show(this_model))
+            })
+          },
+        
+          appendItem: function(item) {
+            $('ul', this.el).append('<li><h2>' + item.get('name') + '</h2><p>' + item.get('descr') + '</p></li>');
+          }
+        
+        })
+      
+        var Router = Backbone.Router.extend({
+          routes: {
+            '': 'index',
+            '!': 'index',
+      
+            '!/cities_users/new': 'cu_new',
+            '!/cities_users/:id': 'cu_show',
+      
+            '!/venues/new/in_cities_user/:cities_user_id': 'venues_new',
+            '!/venues/:id/delete': 'venues_delete',
+      
+            '!/addritems/new/in_cities_user/:cities_user_id': 'addritems_new'
+          },
+    
+          index: function() {
+          },
+    
+          initialize: function() {
+      
+          }
+        })
+
+        router = new Router();
+        reports = new Reports();
+        reports.fetch();
+      
+        Backbone.history.start();
+        reports_index = new ReportsIndex();
+      })
+        .container Loading...
+    %script#m_reports_index{:type => "text/x-mustache-template"}
+      {{#reports}}
+      <h2>{{name}}</h2>
+      {{/reports}}

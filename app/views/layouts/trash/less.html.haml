@@ -1,0 +1,12 @@
+<!doctype html>
+%html
+  %head
+    %meta{:charset => "utf-8"}/
+    %title
+    /[if lt IE 9]
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    %link{:href => "", :media => "all", :rel => "stylesheet"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    / Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/
+  %body{:lang => "en"}
+    = yield

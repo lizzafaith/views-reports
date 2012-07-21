@@ -1,0 +1,24 @@
+- unless current_user.blank?
+  .relative
+    .span-24.menu-organizer
+      %ul
+        %li
+          %a.menu-secondary-toggle New [+/-]
+        %li= link_to 'My Days', my_days_path
+        %li= link_to 'Todos', todos_path
+        %li= link_to 'My Cities', cities_users_path
+        %li= link_to 'My Places', my_venues_path
+        %li= link_to 'My Reports', my_reports_path
+        %li= link_to 'My Events', my_events_path
+      .clear
+    .absolute.hide.box.menu-secondary-content
+      %ul
+        %li= link_to 'Day', my_new_day_path
+        %li= link_to 'Report', new_report_path
+        %li= link_to 'Gallery', new_gallery_path
+        %li= link_to 'Event', new_event_path
+        %li= link_to 'My City', new_cities_user_path
+        %li= link_to 'Video', new_video_path
+        %li= link_to 'Photo', new_photo_path
+        %li= link_to 'Tag', new_tag_path
+        %li= link_to 'Dictitem', new_dictionaryitem_path

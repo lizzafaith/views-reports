@@ -1,0 +1,40 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %title
+      = h yield(:title)
+      | Infinite Shelter
+    = stylesheet_link_tag 'manifest_minimal'
+    = csrf_meta_tags
+    = javascript_include_tag 'http://w.sharethis.com/button/buttons.js',                     |
+      'vendor/jquery-1.6.1-min', 'vendor/json2-min', 'vendor/underscore', 'vendor/backbone', |
+      'defaults', 'application'                                                              |
+  %body.minimal
+    .header
+      .logo.float-left
+        = link_to image_tag('logo100x100.png'), '/'
+      .menu-main.float-left
+        %h1 Sedux
+        .hide
+          %ul.flat
+            - if @sort_by == 'date'
+              %li [by date]
+              %li= link_to '[by popularity]', :controller => 'tags', :action => 'reports', :sort_by => 'popularity', :name_seo => @tag[:name_seo]
+            - else
+              %li= link_to '[by date]', :controller => 'tags', :action => 'reports', :sort_by => 'date', :name_seo => @tag[:name_seo]
+              %li [by popularity]
+          %ul.flat
+            %li= link_to '[add report]', :controller => 'reports', :action => 'new'
+            %li= link_to '[rss]', :controller => 'tags', :action => 'reports', :sort_by => 'date', :format => 'rss'
+    .clear
+    .minimal-ad= render 'ad_leaderboard'
+    .content.relative
+      = yield
+    .footer
+      = render 'share_this'
+      .height-10
+      Copyright &copy; CAC 2009-2012
+      %br/
+      = image_tag 'contact.png'
+    = render :partial => 'analytics'

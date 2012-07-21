@@ -1,0 +1,36 @@
+
+
+/ semantic footer
+
+/ 20120710
+
+
+
+#footer_main
+
+  %section
+    %ul.menu
+      %li= link_to t('g.about'), about_path
+      %li= link_to t('g.privacy'), privacy_path
+      - if current_user
+        %li= link_to t('users.sign_out'), sign_out_path
+
+    .shtick
+      ^__^
+
+    .copyright
+      .logo= image_cac
+      %span
+        Copyright &copy; CAC 2009-2012
+      %span= render 'contact'
+      %span= DateTime.now.in_time_zone(TIMEZONE).to_s(:pretty)
+
+  %section.cities
+    %span New York City
+    %span Ann Arbor
+    %span Chicago
+    %span San Francisco
+    %span Rio de Janeiro
+    .clear
+
+  .clear

@@ -1,0 +1,24 @@
+
+
+/ layouts minimal_22
+
+- content_for :title, @title
+
+- content_for :content do
+
+  
+  .sidebar
+    = yield :sidebar
+
+  .main
+    %h1= yield(:main_title)
+    
+    .width-half
+      = yield(:half_one)
+    .width-half
+      = yield(:half_two)
+    .clear
+
+    = yield
+
+= render :template => 'layouts/minimal_2'

@@ -1,0 +1,44 @@
+!!!
+%html
+  %head
+    %title
+      = h yield(:title)
+      \- 
+      = t 'g.ish'
+    %link{:href => "http://fonts.googleapis.com/css?family=Asul", :rel => "stylesheet", :type => "text/css"}
+    = stylesheet_link_tag 'application_ultra'
+    = csrf_meta_tags
+    = javascript_include_tag 'application', 'http://w.sharethis.com/button/buttons.js'
+    = render 'analytics'
+      
+  %body{:lang => @parsed_locale }
+    #layout_ultra
+      = render :partial => 'header_20120718'
+
+      .content-main{ :id => @action_name }
+
+        - if notice
+          %p.notice= notice
+        - if alert
+          %p.alert= alert
+
+        - if content_for?(:header_one)
+          #header_one
+            .scroller= yield(:header_one)
+        - if content_for?(:header_two)
+          #header_two
+            .scroller= yield(:header_two)
+
+        - if content_for?(:one)
+          #column_one= yield(:one)
+        - if content_for?(:two)
+          #column_two= yield(:two)
+        
+        #sidebar_content= yield(:sidebar) if content_for?(:sidebar)
+        #main_content= yield(:main) if content_for?(:main)
+
+        = yield
+
+      #content_footer= yield(:footer) if content_for?(:footer)
+
+    = render 'footer_20120713'

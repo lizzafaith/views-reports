@@ -1,0 +1,42 @@
+= render 'title', :title => 'Hello Admin'
+
+.span-6
+  %ul
+    %li= admin_index_public_tags_link
+    %li= link_to 'Subscriptions', admin_subscriptions_path
+    %li= link_to 'Ratings', admin_ratings_path
+    %li= link_to 'Public Reports', admin_reports_path
+
+  .space
+
+  %ul
+    %li= link_to 'Admin users', admin_users_path
+    %li= link_to t('errors.list'), "/admin/errors"
+    
+
+.span-6
+  %ul
+    %li= link_to 'All Reports', :controller => :reports, :action => :index
+    %li= link_to 'Public Nontrash', :controller => :reports, :action => :public_nontrash
+    %li
+      = link_to 'Venue Types', :controller => :venue_types, :action => :index
+      = link_to '[+]', :controller => :venue_types, :action => :new
+    %li
+      = link_to 'Communities', :controller => :communities, :action => :index
+      = link_to '[+]', :controller => :communities, :action => :new
+    %li= link_to 'Events', :controller => :events, :action => :index
+    %li
+      = link_to 'Cities', :controller => :cities, :action => :index
+      = link_to '[+]', :controller => :cities, :action => :new
+    %li= link_to 'Ratings', :controller => :ratings, :action => :index
+  
+
+.span-12.last
+  %h3
+    Public Reports
+    = link_to '(All)', admin_reports_path
+  %ul
+    - @public_reports.each do |report|
+      %li
+        = link_to report.name, report_path(report)
+        = link_to image_edit, edit_report_path(report)

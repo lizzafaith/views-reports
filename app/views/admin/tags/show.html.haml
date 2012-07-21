@@ -1,0 +1,28 @@
+%p#notice= notice
+%p
+  %b Name:
+  = @tag.name
+%p
+  %b Name seo:
+  = @tag.name_seo
+%p
+  %b Descr:
+  = @tag.descr
+%p
+  %b Parent:
+  = @tag.parent_id
+%p
+  %b User:
+  = @tag.user_id
+%p
+  %b Is public:
+  = @tag.is_public
+%p
+  %b Is feature:
+  = @tag.is_feature
+%p
+  %b Is trash:
+  = @tag.is_trash
+= link_to 'Edit', edit_tag_path(@tag)
+|
+\#{link_to 'Back', tags_path}

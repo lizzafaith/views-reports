@@ -1,0 +1,20 @@
+
+
+/ reports homepage
+
+/ 20120708
+/ 20120713
+
+- content_for :title, t('g.homepage')
+
+
+- content_for :one do  
+  = render 'reports/features', :reports => @reports
+
+- content_for :two do
+
+  = render 'events/features'
+  = render 'tags/features'
+  = render 'galleries/features', :galleries => @galleries
+  = render 'videos/features', :videos => @videos
+  = render 'cities/map'

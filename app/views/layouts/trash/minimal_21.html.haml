@@ -1,0 +1,29 @@
+
+
+/ layouts minimal_21
+
+- content_for :title, @title
+
+- content_for :content do
+
+  = render 'init_maps'
+
+  = render 'cities/header', :city => @city
+
+  - # = render 'header_three', :item => @venue
+  
+  .sidebar
+    = yield :sidebar
+
+  .main
+    = content_for?(:main) ? yield(:main) : yield
+
+
+
+= render :template => 'layouts/minimal_2'
+
+:coffee
+  $(document).ready ->
+
+    Utils.init_scroller(".sidebar-scroller")
+    Utils.scroll_to('a[name="header_3"]')

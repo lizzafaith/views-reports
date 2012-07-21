@@ -1,0 +1,14 @@
+
+
+%h2 Cities Index (admin)
+
+- @cities.map do |c|
+  %h3
+    = c.name
+    = link_to image_edit, edit_city_path(c)
+  %ul
+    - c.reports.each do |r|
+      %li
+        = link_to r.name, r
+        = link_to image_edit, edit_report_path(r)
+  %hr.spacer

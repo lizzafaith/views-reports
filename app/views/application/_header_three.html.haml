@@ -1,0 +1,29 @@
+
+/ venues _header
+
+%a{ :name => 'header_three' }
+.header
+
+  .logo
+    - if !item.photo.blank?
+      = image_tag(item.photo.url(:thumb))
+    - else
+      = missing
+
+  %ul
+    %li
+      .e
+        %h1= item.name.capitalize
+    %li= link_to 'News', '#news'
+    - if @n_report_pages > 0
+      %li= link_to 'Reports', '#reports'
+    - if @n_gallery_pages > 0
+      %li= link_to 'Galleries', '#galleries'
+
+    - unless @videos.blank?
+      %li= link_to 'Videos', '#videos'
+
+  .center.margin-bottom= render 'ad_leaderboard'
+
+  .clear
+.clear

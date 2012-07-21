@@ -1,0 +1,14 @@
+
+.relative
+  .swooshable-list-1
+    = render 'index'
+  .swooshable-list-2
+.clear
+
+.page-numbers
+  - (1..@n_pages).each_with_index do |page, idx|
+    - selected = (idx == 0) ? 'selected' : ''
+    %span{:class => selected + ' item ' + page.to_s}= page
+.space
+
+= render 'ad_leaderboard'

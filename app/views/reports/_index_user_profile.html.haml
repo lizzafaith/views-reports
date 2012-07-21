@@ -1,0 +1,41 @@
+
+
+/ reports?
+
+.reports.relative
+  %a{ :name => 'reports' }
+  .title
+    %h2
+      = link_to image_tag('top.gif'), '#'
+      Reports
+      = link_to image_close, 'javascript: return;', :class => 'reports-close hide'
+
+  .swooshit
+    .swooshable-list-1
+      = t 'users.chose_page'
+    .swooshable-list-2
+
+  .scroller
+    .page-numbers
+      - (1..@n_report_pages).each_with_index do |page, idx|
+        - selected = (idx == 0) ? 'selected' : ''
+        - selected = ''
+        %span{:class => selected + ' item ' + page.to_s}= page
+  .space
+
+:coffee
+  $(document).ready ->
+
+    Swooshit.set_scroller_width()
+    
+    options = 
+      path: 'users/' + #{user_id} +'/reports'
+      ctrl: 'reports'
+      load_first: false
+      page_name: 'reports_page'
+    Swooshit.init(options)
+    
+
+    $('a.reports-close').on 'click', ->
+      $('.reports .swooshable-list-1').html("#{t 'users.chose_page'}")
+      $('a.reports-close').css('display', 'none')
