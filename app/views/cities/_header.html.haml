@@ -10,7 +10,7 @@
     .logo= link_to image_tag(city.profile_photo.url(:thumb)), city_path(city)
   - rescue
 
-  %h1= link_to city.name, city_path(city)
+  %h1= link_to city.name, city
 
   %ul.menu
     %li= link_to t('reports.list'), '#city_reports'

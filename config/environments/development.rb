@@ -44,4 +44,8 @@ ViewsReports::Application.configure do
   
   ADBRITE = false
   
+  DATA_PATH = Rails.root.join('lib', 'ish-lib', 'data')
+  
+  config.assets.paths << Rails.root.join("lib", "ish-lib", 'helpers-dev' )
+  
 end

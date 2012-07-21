@@ -13,8 +13,8 @@
   - unless @report.city.blank?
     .item.city
       = t('g.in')
-      = link_to @report.city.name, city_path(@report.city)
-      = link_to image_or_missing(@report.city, :thumb), city_path(@report.city)
+      = link_to @report.city.name, @report.city
+      -#= link_to image_or_missing(@report.city, :thumb), @report.city
   .item.user
     = t('g.by')
     = link_to @report.user.username, @report.user

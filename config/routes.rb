@@ -1,7 +1,7 @@
 ViewsReports::Application.routes.draw do
   
-  root :to => 'reports#index'
-  
+  root :to => 'reports#show', :defaults => { :id => 1}
+
   get 'reports/view' => 'reports#show'
   get 'reports/view/:name_seo' => 'reports#show'
   
@@ -16,7 +16,7 @@ ViewsReports::Application.routes.draw do
   
   resources :no_reports
   resources :no_users
-  
+  resources :no_cities
   
   
 end

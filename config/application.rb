@@ -52,20 +52,19 @@ module ViewsReports
     #
     # ish-lib
     #
-    config.autoload_paths += %W(
-      #{config.root}/lib/ish-lib/controllers
-      #{config.root}/lib/ish-lib/models
-    )
     config.i18n.load_path += Dir[Rails.root.join('lib', 'ish-lib', 'locales', '*.{rb,yml}').to_s]
     
     config.autoload_paths += %W(
       #{config.root}/lib/ish-lib/controllers
       #{config.root}/lib/ish-lib/models
+      #{config.root}/lib/ish-lib/helpers
     )
     config.assets.paths << Rails.root.join("lib", "ish-lib", 'assets', 'flash' )
     config.assets.paths << Rails.root.join("lib", "ish-lib", 'assets', 'images' )
     config.assets.paths << Rails.root.join("lib", "ish-lib", 'assets', 'javascripts' )
     config.assets.paths << Rails.root.join("lib", "ish-lib", 'assets', 'stylesheets' )
     config.assets.paths << Rails.root.join("lib", "ish-lib", 'data' )
+    
+    config.prepend_helper_path = "#{config.root}/lib/ish-lib/helpers"
   end
 end
