@@ -1,0 +1,33 @@
+
+
+/ venues show
+
+/ 20120722
+
+%ul.menu
+  - @venue.events.each do |e|
+    %li= link_to e.name, venue_events_path(e)
+  - @venue.reports.each do |r|
+    %li= link_to r.name, view_report_path(r)
+  - @venue.galleries.each do |g|
+    %li= link_to g.name, venue_gallery_path(g)
+
+- if @city_features
+  #city_features
+    = t 'g.in_this_city'
+    %ul
+      - @venues.each do |venue|
+        %li= link_to venue.name, venue
+
+%h1= @venue.name
+= render 'venues/meta', :venue => @venue, :city => @venue.no_city
+
+.i= image_or_missing(@venue, :small)
+#map_canvas_2
+.descr= @venue.descr.html_safe
+
+= render 'share_this'
+= render 'ratings/rate_this'
+= render 'disqus'
+
+    

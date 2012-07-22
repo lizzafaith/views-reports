@@ -11,6 +11,7 @@ class AttachmentStub
   
 end
 
+
 class NoPhotoStub
   
   include Mongoid::Document
@@ -35,6 +36,19 @@ class NoPhotoStub
     AttachmentStub.new
   end
   
+  
+
+end
+
+
+class NoPhotoStub2 < NoPhotoStub
+  
+  def url size = nil
+    if size == :thumb
+      return "http://s3.amazonaws.com/ISh-development/venues/small/396/CAC_logo_02_FINAL-nobg.png"
+    end
+    return 'http://s3.amazonaws.com/ISh-development/venues/small/396/CAC_logo_02_FINAL-nobg.png'
+  end
   
 
 end

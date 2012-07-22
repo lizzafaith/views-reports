@@ -26,8 +26,11 @@ if u.blank?
   u.save
 end
 
-(1..4).each do |i|
+no_photo = NoPhotoStub.new
+no_photo.save
 
+# the following fails in a good way if already exists
+(1..4).each do |i|
   str = File.read("#{DATA_PATH}/reports/#{i}.json")
   str = JSON(str).symbolize_keys
 
@@ -39,8 +42,6 @@ end
   
   report.is_feature = 1
 
-  no_photo = NoPhotoStub.new
-  no_photo.save
   report.no_photos = [ no_photo ]
 
   
@@ -50,10 +51,29 @@ end
 
   if report.save
     puts "saved #{report.name}"
-  else
-    report.errors.each do |e|
-      puts "Did not save because of: #{e}"
-    end
   end
+end
+
+seo = 'C-A-C'
+venue = NoVenue.where(:seo => seo ).first
+if venue.blank?
+  v = NoVenue.new
+  v.name = 'Computational Arts Corp'
+  v.seo = seo
+  v.no_city = city
+  v.descr = "We are a full-stack RoR development shop in San Francisco."
   
+  v.no_photos = [ NoPhotoStub.first ]
+  
+  # services
+  # portfolio
+  # team
+  # contact
+  
+  rs = NoReport.public.limit(4)
+  v.no_reports = [ rs ]
+  
+  if v.save
+    puts " + venue "
+  end
 end

@@ -65,6 +65,5 @@ module ViewsReports
     config.assets.paths << Rails.root.join("lib", "ish-lib", 'assets', 'stylesheets' )
     config.assets.paths << Rails.root.join("lib", "ish-lib", 'data' )
     
-    config.prepend_helper_path = "#{config.root}/lib/ish-lib/helpers"
   end
 end

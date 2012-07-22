@@ -1,0 +1,17 @@
+
+
+.venues
+  .weekly
+    #venues_weekly
+    %h1.title= t('venues.weekly')
+
+    .items
+      - weekly.each do |item|
+        .item
+          %b= item[0].capitalize
+          %ul
+            - item[1].each do |venue|
+              %li= link_to venue.name, venue_path(venue)
+      .clear
+
+    .clear

@@ -1,0 +1,14 @@
+%h1 Listing venues
+
+- @venues.each do |venue|
+  .list-item
+    - if venue.photo.blank?
+      = missing_image
+    - else
+      = image_tag venue.photo.url(:thumb)
+    
+    = link_to venue.name, venue_path(venue)
+
+
+.digg_pagination
+  = will_paginate @venues, :container => false

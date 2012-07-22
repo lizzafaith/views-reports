@@ -1,0 +1,14 @@
+/ venues index small
+- city_id = params[:city_id]
+- city_id ||= 22 # defaults to San Francisco
+%h3.index-small= link_to 'Venues', '/cities/' + city_id.to_s + '/venues'
+= form_tag '/venues/index_small/' + city_id.to_s do
+  = select_tag :venue_id, options_for_select(@venue_types_list)
+  = submit_tag 'Filter By Type'
+.index-small
+  - if @venues.blank?
+    No venues
+  - else
+    - @venues.map do |venue|
+      %h3= link_to venue.name.capitalize, venue
+      .clear

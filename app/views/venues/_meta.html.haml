@@ -1,0 +1,14 @@
+
+
+/ venues _meta
+
+- str = ''
+- unless venue.venue_type.blank?
+  - str += t('g.a') + ' '
+  - str += venue.venue_type.name + ' '
+- unless city.blank?
+  - str += t('g.in') + ' '
+  - str += city.name
+
+.meta= str.titleize
+  
