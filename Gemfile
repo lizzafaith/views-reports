@@ -26,3 +26,5 @@ gem 'oa-core', '0.3.2'
 
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem "aws-s3",            :require => "aws/s3"
+
+gem 'to_slug_2'

@@ -9,6 +9,9 @@
 
 # require 'bson'
 
+no_photo = NoPhotoStub.new
+no_photo.save
+
 name = 'Angora'
 city = NoCity.where(:name => name).first
 if city.blank?
@@ -26,8 +29,7 @@ if u.blank?
   u.save
 end
 
-no_photo = NoPhotoStub.new
-no_photo.save
+
 
 # the following fails in a good way if already exists
 (1..4).each do |i|

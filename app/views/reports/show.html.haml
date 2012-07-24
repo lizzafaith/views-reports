@@ -18,7 +18,7 @@
   .item.user
     = t('g.by')
     = link_to @report.user.username, @report.user
-    - unless @report.user.profile_photo.blank?
+    - unless @report.user.photo.blank?
       = link_to image_or_missing(@report.user.profile_photo, :mini), show_user_path(@report.user)
   - @report.tags.each do |tag|
     .item.tag

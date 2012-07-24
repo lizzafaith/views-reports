@@ -6,6 +6,6 @@
 %ol
   - @communities.each do |community|
     %li{:value => community.id}
-      = link_to edit_image, admin_edit_community_path(community)
+      = link_to image_edit, admin_edit_community_path(community)
       = link_to community.name, community
       = link_to delete_image, community, :method => :delete

@@ -6,21 +6,21 @@ development:
     default:
       hosts:
         - localhost:27017
-      database: ish_development
+      database: views_reports_development
 
 test:
   sessions:
     default:
       hosts:
         - localhost:27017
-      database: ish_test
+      database: views_reports_test
 
 production:
   sessions:
     default:
       hosts:
         - localhost:27017
-      database: ish_production
+      database: views_reports_production
   
 #  slaves:
 #    - host: localhost

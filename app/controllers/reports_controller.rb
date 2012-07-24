@@ -2,8 +2,7 @@
 
 class ReportsController < ApplicationController
   
-  
-  helper :devv if Rails.env.development?
+  helper 'devv'
   
   def index; end
     
@@ -15,6 +14,8 @@ class ReportsController < ApplicationController
     @report.no_photos = [ no_photo ]
     @report.save
     
+    
+
   end
   
 end
