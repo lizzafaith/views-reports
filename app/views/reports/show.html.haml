@@ -23,7 +23,7 @@
   - @report.tags.each do |tag|
     .item.tag
       = link_to tag, tag_path(tag)
-  .item= pretty_date @report[:created_at]
+  .item= pretty_date @report.created_at
 
 
 .subhead= simple_format @report.subhead

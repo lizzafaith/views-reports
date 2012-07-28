@@ -14,16 +14,16 @@ end
 
 class NoPhotoStub
   
-  include Mongoid::Document
-  include Mongoid::Paperclip
-  
-  belongs_to :no_report
-  belongs_to :no_venue
-  belongs_to :no_user
-  
-  belongs_to :no_city
-  
-  field :url, :type => String
+#  include Mongoid::Document
+#  include Mongoid::Paperclip
+#  
+#  belongs_to :no_report
+#  belongs_to :no_venue
+#  belongs_to :no_user
+#  
+#  belongs_to :no_city
+#  
+#  field :url, :type => String
   
   def url size = nil
     if size == :thumb

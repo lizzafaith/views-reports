@@ -1,11 +1,12 @@
 require File.expand_path('../boot', __FILE__)
 
 # require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "active_resource/railtie"
-require "sprockets/railtie"
-require "rails/test_unit/railtie"
+require 'rails/all'
+#require "action_controller/railtie"
+#require "action_mailer/railtie"
+#require "active_resource/railtie"
+#require "sprockets/railtie"
+#require "rails/test_unit/railtie"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -51,22 +52,23 @@ module ViewsReports
     
     #
     # ish-lib
+    # 20120724
+    # 20120727
+    # if git submodule, then read-only
     #
-    config.i18n.load_path += Dir[Rails.root.join('lib', 'ish-lib', 'locales', '*.{rb,yml}').to_s]
+    # ISHLIB = 'ish-lib'
+    
+    config.i18n.load_path += Dir[Rails.root.join('lib', ISHLIB, 'locales', '*.{rb,yml}').to_s]
     
     config.autoload_paths += %W(
-      #{config.root}/lib/ish-lib/controllers
-      #{config.root}/lib/ish-lib/models
-      #{config.root}/lib/ish-lib/helpers
-      #{config.root}/lib/helpers_2
+      #{config.root}/lib/#{ISHLIB}/controllers
+      #{config.root}/lib/#{ISHLIB}/helpers
     )
-    config.assets.paths << Rails.root.join("lib", "ish-lib", 'assets', 'flash' )
-    config.assets.paths << Rails.root.join("lib", "ish-lib", 'assets', 'images' )
-    config.assets.paths << Rails.root.join("lib", "ish-lib", 'assets', 'javascripts' )
-    config.assets.paths << Rails.root.join("lib", "ish-lib", 'assets', 'stylesheets' )
-    config.assets.paths << Rails.root.join("lib", "ish-lib", 'data' )
-    
-    config.prepend_helper_path = Rails.root.join("lib", "helpers_2")
+    config.assets.paths << Rails.root.join("lib", ISHLIB, 'assets', 'flash' )
+    config.assets.paths << Rails.root.join("lib", ISHLIB, 'assets', 'images' )
+    config.assets.paths << Rails.root.join("lib", ISHLIB, 'assets', 'javascripts' )
+    config.assets.paths << Rails.root.join("lib", ISHLIB, 'assets', 'stylesheets' )
+    config.assets.paths << Rails.root.join("lib", ISHLIB, 'data' )
      
   end
 end
