@@ -56,7 +56,7 @@ module ViewsReports
     # 20120727
     # if git submodule, then read-only
     #
-    # ISHLIB = 'ish-lib'
+    ISHLIB = 'ish-lib'
     
     config.i18n.load_path += Dir[Rails.root.join('lib', ISHLIB, 'locales', '*.{rb,yml}').to_s]
     
