@@ -1,4 +1,4 @@
 .bundle
 log/*.log
 tmp/
-.sass-cache/
+.sass-cache/"ish-lib" 
