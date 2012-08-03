@@ -7,6 +7,8 @@ ViewsReports::Application.routes.draw do
 
   get 'reports/view' => 'reports#show'
   get 'reports/view/:name_seo' => 'reports#show'
+
+  get 'venues/lizvenue' => 'venues#lizvenue'
   
   resources :reports
   resources :users
