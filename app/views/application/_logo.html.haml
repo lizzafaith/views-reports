@@ -1,8 +1,26 @@
 #header_main
   .span-3.logo-2
-    = link_to image_tag('logo_60x60.png'), '/'
-  .span-14
-    = render 'menu_main'
-  .span-7.last
+    = link_to image_tag('logo100x100.png'), '/'
+  .span-10.forms-global
+    
+    = render 'search_main'
+
+    / select city
+    = form_tag '/set-city' do
+      #current_city_name
+        - if !session[:current_city].blank?
+          = session[:current_city][:name]
+        - else
+          Party / Travel Guide
+      = select_tag :city_id, options_for_select(@cities_fr4re)
+      = submit_tag 'Set Current City'
+
+
+    = render 'set_layout'
+
+    = render 'set_locale'
+
+  .span-7 &nbsp;
+  .span-4.last
     = render 'login_register'
   .clear

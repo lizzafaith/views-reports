@@ -1,5 +1,5 @@
 
-.bg-blue.menu-main
+.span-24.bg-blue.menu-main
   %ul.sf-menu
     %li= link_to 'Tags', tags_path
     %li= link_to 'Galleries', galleries_path
@@ -27,7 +27,7 @@
           %li= link_to 'Show All', venues_path
       %li= link_to 'Events', events_path
       %li= link_to 'Communities', communities_path
-    %li.last
+    %li
       %a{:href => 'javascript:void(0);' } New
       %ul
         %li= link_to 'Photo', new_photo_path
